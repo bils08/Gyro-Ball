@@ -5,18 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.MainActivity"
-<<<<<<< HEAD
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
-=======
-    android:id="@+id/myLayout"
-    android:background="@drawable/background_animated">
->>>>>>> master
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/myLayout"
+        android:background="@drawable/background_animated">
 
         <RelativeLayout
             android:id="@+id/container"
@@ -24,29 +21,31 @@
             android:layout_height="match_parent" />
 
         <TextView
-            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="Gyro Ball"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Gyro Ball"
-            android:textSize="50dp" />
+            android:textSize="50dp"/>
 
         <Button
-            android:id="@+id/btnNewGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/btnNewGame"
+            android:text="@string/btnGame"
+            android:background="@drawable/btn_start_bg"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
-            android:text="@string/btnGame" />
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/btnExit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/btnExit"
+            android:background="@drawable/btn_exit_bg"
             android:layout_below="@id/btnNewGame"
-            android:layout_centerInParent="true"
-            android:text="@string/btnExit" />
+            android:layout_centerInParent="true"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -54,7 +53,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<<<<<<< HEAD
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -68,43 +66,15 @@
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-=======
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/title"
-        android:text="Gyro Ball"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:textSize="50dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnNewGame"
-        android:text="@string/btnGame"
-        android:background="@drawable/btn_start_bg"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="10dp"/>
->>>>>>> master
 
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
-<<<<<<< HEAD
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/nav_view"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
-=======
-        android:layout_height="wrap_content"
-        android:id="@+id/btnExit"
-        android:text="@string/btnExit"
-        android:background="@drawable/btn_exit_bg"
-        android:layout_below="@id/btnNewGame"
-        android:layout_centerInParent="true"/>
->>>>>>> master
 
 </android.support.v4.widget.DrawerLayout>

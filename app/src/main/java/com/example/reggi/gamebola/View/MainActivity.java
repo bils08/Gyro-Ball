@@ -1,11 +1,8 @@
 package com.example.reggi.gamebola.View;
 
-<<<<<<< HEAD
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-=======
 import android.graphics.drawable.AnimationDrawable;
->>>>>>> master
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -31,12 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected FragmentGame fragmentGame;
     protected FragmentManager fragmentManager;
     protected Presenter p;
-<<<<<<< HEAD
     protected DrawerLayout drawer;
-=======
     RelativeLayout myLayout;
     AnimationDrawable animationDrawable;
->>>>>>> master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
