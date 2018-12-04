@@ -153,8 +153,8 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         int x = obstacle.getObstacleX();
         int y = obstacle.getObstacleY();
         this.paint.setColor(Color.RED);
-        Rect rect = new Rect(x,y,50,50);
-        canvas.drawCircle(x,y,this.initiateRadius, paint);
+        Rect rect = new Rect(x,y,x+100,y+100);
+        canvas.drawRect(rect, paint);
         ivCanvas.invalidate();
     }
 
