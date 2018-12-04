@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ import com.example.reggi.gamebola.R;
 
 import java.util.Random;
 
-public class FragmentGame extends Fragment implements View.OnClickListener, Switch.OnCheckedChangeListener{
+public class FragmentGame extends Fragment, AppCompatActivity implements View.OnClickListener, Switch.OnCheckedChangeListener{
     protected ListenerFragmentGame listenerFragmentGame;
     protected TextView timer, scoreText;
     protected Switch nightMode;
@@ -64,13 +65,22 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.darkTheme);
+        }
+        else{
+            setTheme(R.style.AppTheme);
+        }
         View result = inflater.inflate(R.layout.fragment_game, null);
         this.timer = result.findViewById(R.id.time);
         this.scoreText = result.findViewById(R.id.score);
         this.ivCanvas = result.findViewById(R.id.canvas);
         this.newGame = result.findViewById(R.id.newGame);
         this.exitGame = result.findViewById(R.id.exitGame);
-        this.nightMode = result.findViewById(R.id.nightMode);
+        this.nightMode = (Switch) result.findViewById(R.id.nightMode);
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            nightMode.setChecked(true);
+        }
 
         this.paint = new Paint();
         this.r = new Random();
@@ -174,4 +184,8 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.listenerFragmentGame.startTimer();
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }
