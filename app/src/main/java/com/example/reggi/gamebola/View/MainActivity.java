@@ -1,11 +1,13 @@
 package com.example.reggi.gamebola.View;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.reggi.gamebola.Model.Bola;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected FragmentGame fragmentGame;
     protected FragmentManager fragmentManager;
     protected Presenter p;
+    RelativeLayout myLayout;
+    AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         this.game.setOnClickListener(this);
         this.exit.setOnClickListener(this);
+
+        //Billy Update
+        myLayout=findViewById(R.id.myLayout);
+        animationDrawable=(AnimationDrawable) myLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(3000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
     }
 
     @Override
