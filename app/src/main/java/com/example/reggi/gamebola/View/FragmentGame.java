@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.hardware.SensorEventListener;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ import com.example.reggi.gamebola.R;
 
 import java.util.Random;
 
-public class FragmentGame extends Fragment, AppCompatActivity implements View.OnClickListener, Switch.OnCheckedChangeListener{
+public class FragmentGame extends Fragment implements View.OnClickListener, Switch.OnCheckedChangeListener{
     protected ListenerFragmentGame listenerFragmentGame;
     protected TextView timer, scoreText;
     protected Switch nightMode;
@@ -65,12 +66,6 @@ public class FragmentGame extends Fragment, AppCompatActivity implements View.On
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            setTheme(R.style.darkTheme);
-        }
-        else{
-            setTheme(R.style.AppTheme);
-        }
         View result = inflater.inflate(R.layout.fragment_game, null);
         this.timer = result.findViewById(R.id.time);
         this.scoreText = result.findViewById(R.id.score);
@@ -78,9 +73,6 @@ public class FragmentGame extends Fragment, AppCompatActivity implements View.On
         this.newGame = result.findViewById(R.id.newGame);
         this.exitGame = result.findViewById(R.id.exitGame);
         this.nightMode = (Switch) result.findViewById(R.id.nightMode);
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            nightMode.setChecked(true);
-        }
 
         this.paint = new Paint();
         this.r = new Random();
@@ -158,14 +150,18 @@ public class FragmentGame extends Fragment, AppCompatActivity implements View.On
 
     public void drawObstacle(){
         Bola obstacle = listenerFragmentGame.getBola();
-        float x = obstacle.getObstacleX();
-        float y = obstacle.getObstacleY();
+        int x = obstacle.getObstacleX();
+        int y = obstacle.getObstacleY();
         this.paint.setColor(Color.RED);
+        Rect rect = new Rect(x,y,50,50);
+        canvas.drawCircle(x,y,this.initiateRadius, paint);
+        ivCanvas.invalidate();
     }
 
     public void drawBall(){
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         this.drawStaticBall();
+        this.drawObstacle();
         Bola movingBall = listenerFragmentGame.getBola();
         float x = movingBall.getX();
         float y = movingBall.getY();
@@ -182,10 +178,5 @@ public class FragmentGame extends Fragment, AppCompatActivity implements View.On
 
     public void startTime(){
         this.listenerFragmentGame.startTimer();
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 }
