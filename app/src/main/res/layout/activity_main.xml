@@ -8,7 +8,12 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
+<<<<<<< Updated upstream
 
+=======
+    android:id="@+id/myLayout"
+    android:background="@drawable/background_animated">
+>>>>>>> Stashed changes
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,6 +53,7 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
+<<<<<<< Updated upstream
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -77,4 +83,6 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
 
+=======
+>>>>>>> Stashed changes
 </android.support.v4.widget.DrawerLayout>
