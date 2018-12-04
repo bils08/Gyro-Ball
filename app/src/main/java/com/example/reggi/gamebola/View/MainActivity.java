@@ -1,28 +1,50 @@
 package com.example.reggi.gamebola.View;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.reggi.gamebola.Model.Bola;
 import com.example.reggi.gamebola.Presenter;
 import com.example.reggi.gamebola.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListenerFragmentGame {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListenerFragmentGame, NavigationView.OnNavigationItemSelectedListener {
     protected TextView gameTitle;
     protected Button game, exit;
     protected FragmentGame fragmentGame;
     protected FragmentManager fragmentManager;
     protected Presenter p;
+    protected DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_open, R.string.navigation_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
         this.game = findViewById(R.id.btnNewGame);
         this.exit = findViewById(R.id.btnExit);
         this.gameTitle = findViewById(R.id.title);
@@ -83,4 +105,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.fragmentGame.finishGame(end);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch(menuItem.getItemId()){
+            case R.id.game:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, this.fragmentGame).commit();
+                break;
+            case R.id.highscore:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HighScoreFragment()).commit();
+                break;
+            case R.id.settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+                break;
+            case R.id.exit:
+                Toast.makeText(this,"EXIT",Toast.LENGTH_SHORT).show();
+                super.onBackPressed();
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
