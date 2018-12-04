@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.hardware.SensorEventListener;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -149,14 +150,18 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
 
     public void drawObstacle(){
         Bola obstacle = listenerFragmentGame.getBola();
-        float x = obstacle.getObstacleX();
-        float y = obstacle.getObstacleY();
+        int x = obstacle.getObstacleX();
+        int y = obstacle.getObstacleY();
         this.paint.setColor(Color.RED);
+        Rect rect = new Rect(x,y,50,50);
+        canvas.drawCircle(x,y,this.initiateRadius, paint);
+        ivCanvas.invalidate();
     }
 
     public void drawBall(){
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         this.drawStaticBall();
+        this.drawObstacle();
         Bola movingBall = listenerFragmentGame.getBola();
         float x = movingBall.getX();
         float y = movingBall.getY();
@@ -173,10 +178,5 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
 
     public void startTime(){
         this.listenerFragmentGame.startTimer();
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 }

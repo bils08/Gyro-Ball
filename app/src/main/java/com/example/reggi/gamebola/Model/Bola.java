@@ -10,7 +10,8 @@ import java.util.Random;
 public class Bola {
     protected Game game;
     protected int radius, width, height;
-    protected float x,y, speedX, speedY, staticX, staticY, obstacleX, obstacleY;
+    protected float x,y, speedX, speedY, staticX, staticY;
+    protected int obstacleX, obstacleY;
     protected Random r = new Random();
 
     public Bola(Game game, int radius){
@@ -36,11 +37,11 @@ public class Bola {
         return staticY;
     }
 
-    public float getObstacleX(){
+    public int getObstacleX(){
         return obstacleX;
     }
 
-    public float getObstacleY(){
+    public int getObstacleY(){
         return obstacleY;
     }
 
