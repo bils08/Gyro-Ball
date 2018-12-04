@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.hardware.SensorEventListener;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -70,7 +72,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.ivCanvas = result.findViewById(R.id.canvas);
         this.newGame = result.findViewById(R.id.newGame);
         this.exitGame = result.findViewById(R.id.exitGame);
-        this.nightMode = result.findViewById(R.id.nightMode);
+        this.nightMode = (Switch) result.findViewById(R.id.nightMode);
 
         this.paint = new Paint();
         this.r = new Random();
@@ -148,14 +150,18 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
 
     public void drawObstacle(){
         Bola obstacle = listenerFragmentGame.getBola();
-        float x = obstacle.getObstacleX();
-        float y = obstacle.getObstacleY();
+        int x = obstacle.getObstacleX();
+        int y = obstacle.getObstacleY();
         this.paint.setColor(Color.RED);
+        Rect rect = new Rect(x,y,50,50);
+        canvas.drawCircle(x,y,this.initiateRadius, paint);
+        ivCanvas.invalidate();
     }
 
     public void drawBall(){
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         this.drawStaticBall();
+        this.drawObstacle();
         Bola movingBall = listenerFragmentGame.getBola();
         float x = movingBall.getX();
         float y = movingBall.getY();
@@ -173,5 +179,4 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     public void startTime(){
         this.listenerFragmentGame.startTimer();
     }
-
 }
