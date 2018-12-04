@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundColor">
+
+    <ImageView
+        android:id="@+id/canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/dividerBottom"
+        android:layout_below="@id/dividerTop"/>
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/labelTime"
+        android:textSize="15dp"
+        android:textColor="?attr/textColor"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/labelScore"
+        android:padding="10dp"
+        android:id="@+id/score"
+        android:layout_centerHorizontal="true"
+        android:textColor="?attr/textColor"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:id="@+id/dividerTop"
+        android:layout_below="@id/time"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:id="@+id/dividerBottom"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@id/newGame"/>
+
+    <Button
+        android:id="@+id/newGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="110dp"
+        android:text="@string/btnGame"
+        android:backgroundTint="?attr/buttonColor"
+        android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/exitGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="11dp"
+        android:text="@string/btnExit"
+        android:backgroundTint="?attr/buttonColor"
+        android:textColor="@android:color/white" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/canvas"
+        android:padding="15dp"
+        android:layout_marginTop="5dp"
+        android:text="Night Mode"
+        android:id="@+id/nightMode"/>
+
+</RelativeLayout>

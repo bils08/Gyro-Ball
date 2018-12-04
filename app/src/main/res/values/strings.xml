@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Game Bola</string>
+    <string name="btnGame">PLAY</string>
+    <string name="btnExit">EXIT</string>
+    <string name="btnHome">HOME</string>
+    <string name="labelScore">SCORE : 0</string>
+    <string name="labelTime">TIME : -</string>
+    <string name="dialogTitle">GAME FINISH</string>
+    <string name="dialogMessage">Your last score is  . Do you want to play again?</string>
+    <string name="dialogBtnYES">YES</string>
+    <string name="dialogBtnNO">NO</string>
+</resources>
