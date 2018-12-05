@@ -22,11 +22,12 @@ import com.example.reggi.gamebola.Model.Bola;
 import com.example.reggi.gamebola.Presenter;
 import com.example.reggi.gamebola.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListenerFragmentGame, ListenerHighScore, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListenerFragmentGame, ListenerHighScore, ListenerSetting, NavigationView.OnNavigationItemSelectedListener {
     protected TextView gameTitle;
     protected Button game, exit;
     protected FragmentGame fragmentGame;
     protected FragmentHighScore fragmentHighScore;
+    protected FragmentSetting fragmentSetting;
     protected FragmentManager fragmentManager;
     protected Presenter p;
     protected DrawerLayout drawer;
@@ -150,5 +151,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public int getDifficulty() {
+        return 0;
+    }
+
+    @Override
+    public int getJumlahBola() {
+        return 0;
+    }
+
+    @Override
+    public void setDifficulty(int difficulty) {
+
+    }
+
+    @Override
+    public void setJumlahBola(int jumlahBola) {
+
     }
 }
