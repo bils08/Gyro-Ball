@@ -8,5 +8,6 @@ public interface ListenerFragmentGame {
     public void startGameTrue();
     public void stopGameTrue();
     public void startTimer();
+    public void addScoreToAdapter(int x);
 
 }
