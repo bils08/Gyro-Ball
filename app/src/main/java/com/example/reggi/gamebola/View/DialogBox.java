@@ -11,11 +11,6 @@ import android.support.v4.app.DialogFragment;
 import com.example.reggi.gamebola.R;
 
 public class DialogBox extends DialogFragment {
-    protected FragmentGame fragmentGame;
-
-    public DialogBox(FragmentGame fragmentGame){
-        this.fragmentGame = fragmentGame;
-    }
 
     @NonNull
     @Override

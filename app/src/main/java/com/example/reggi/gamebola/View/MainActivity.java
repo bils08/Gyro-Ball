@@ -1,8 +1,8 @@
 package com.example.reggi.gamebola.View;
 
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.graphics.drawable.AnimationDrawable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -22,13 +22,15 @@ import com.example.reggi.gamebola.Model.Bola;
 import com.example.reggi.gamebola.Presenter;
 import com.example.reggi.gamebola.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListenerFragmentGame, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListenerFragmentGame, ListenerHighScore, NavigationView.OnNavigationItemSelectedListener {
     protected TextView gameTitle;
     protected Button game, exit;
     protected FragmentGame fragmentGame;
+    protected FragmentHighScore fragmentHighScore;
     protected FragmentManager fragmentManager;
     protected Presenter p;
     protected DrawerLayout drawer;
+    protected Adapter adapter;
     RelativeLayout myLayout;
     AnimationDrawable animationDrawable;
 
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.p = new Presenter(this);
         this.fragmentManager = getSupportFragmentManager();
         this.fragmentGame = FragmentGame.newInstance(this, p);
+        this.fragmentHighScore = FragmentHighScore.newInstance(this, this.getLayoutInflater());
 
         this.game.setOnClickListener(this);
         this.exit.setOnClickListener(this);
@@ -104,6 +107,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.p.startTimer();
     }
 
+    @Override
+    public void addScoreToAdapter(int x) {
+        this.fragmentHighScore.adapter.addLine(x);
+    }
+
     public void increaseScore(){
         this.fragmentGame.score++;
     }
@@ -132,10 +140,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, this.fragmentGame).commit();
                 break;
             case R.id.highscore:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HighScoreFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new FragmentHighScore()).commit();
                 break;
             case R.id.settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSetting()).commit();
                 break;
             case R.id.exit:
                 Toast.makeText(this,"EXIT",Toast.LENGTH_SHORT).show();

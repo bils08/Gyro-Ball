@@ -51,8 +51,6 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     protected Path path;
     protected int width, height, initiateRadius, score;
     protected Presenter p;
-    protected DialogBox dialogBox;
-    protected FragmentManager manager;
 
     public FragmentGame(){}
 
@@ -78,9 +76,6 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.r = new Random();
         this.path = new Path();
         this.initiateRadius = 50;
-
-        this.dialogBox = new DialogBox(this);
-        this.manager = getFragmentManager();
 
         this.newGame.setOnClickListener(this);
         this.exitGame.setOnClickListener(this);
@@ -127,6 +122,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         ivCanvas.invalidate();
         this.timer.setText("TIME : -");
         this.scoreText.setText("SCORE : 0");
+        this.listenerFragmentGame.addScoreToAdapter(this.score);
         this.score = 0;
     }
 
