@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected Presenter p;
     protected DrawerLayout drawer;
     protected Adapter adapter;
-    RelativeLayout myLayout;
-    AnimationDrawable animationDrawable;
+    protected RelativeLayout myLayout;
+    protected AnimationDrawable animationDrawable;
+    protected NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        this.navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
@@ -74,12 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == game){
-            FragmentTransaction transaction = this.fragmentManager.beginTransaction();
-            transaction.replace(R.id.container, this.fragmentGame);
-            transaction.commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, this.fragmentGame).commit();
             this.gameTitle.setVisibility(View.GONE);
             this.game.setVisibility(View.GONE);
             this.exit.setVisibility(View.GONE);
+            navigationView.setCheckedItem(R.id.game);
         }
         else if(v == exit){
             finish();
@@ -146,8 +146,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSetting()).commit();
                 break;
             case R.id.exit:
-                Toast.makeText(this,"EXIT",Toast.LENGTH_SHORT).show();
-                super.onBackPressed();
+                finish();
+                System.exit(1);
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
