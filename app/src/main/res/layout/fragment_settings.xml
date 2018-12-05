@@ -1,17 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.SettingsFragment"
+    tools:context=".View.FragmentSetting"
     android:background="@android:color/holo_blue_light">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/settings"
-        android:textSize="30dp"
+        android:text="@string/difficulty"
+        android:textSize="@dimen/txtSize"
+        android:layout_centerInParent="true"
+        android:id="@+id/tvDifficulty"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/difficulty"
+        android:textSize="@dimen/txtSize"
+        android:layout_toRightOf="@+id/tvDifficulty"
         android:layout_centerInParent="true"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jumlah_bola"
+        android:textSize="@dimen/txtSize"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/difficulty"
+        android:id="@+id/tvJumlahBola"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jumlahBola"
+        android:textSize="@dimen/txtSize"
+        android:layout_toRightOf="@+id/tvJumlahBola"
+        android:layout_below="@+id/difficulty"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jumlahBola"
+        android:layout_centerInParent="true"
+        android:id="@+id/apply"
+        android:text="Apply"
+        android:textSize="@dimen/txtSize"/>
+
+</RelativeLayout>

@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.HighScoreFragment"
-    android:background="@android:color/holo_red_light">
+    android:orientation="vertical"
+    android:background="?attr/backgroundColor">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showSkor"
+        android:text="@string/textHighScore"
+        android:textSize="30dp"
+        android:padding="10dp"
+        android:textAlignment="center"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/high_score"
-        android:textSize="30dp"
-        android:layout_centerInParent="true"/>
+        android:text="@string/textRank"
+        android:layout_below="@id/showSkor"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:id="@+id/rank"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textScore"
+        android:layout_below="@id/showSkor"
+        android:layout_centerInParent="true"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:id="@+id/rank"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listView"
+        android:layout_below="@id/rank"/>
+</RelativeLayout>
