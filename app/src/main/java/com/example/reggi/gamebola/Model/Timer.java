@@ -15,7 +15,7 @@ public class Timer {
     protected long timeInMillis = 0;
     CountDownTimer timer;
     public void startTimer(){
-        timeInMillis = 21000; //waktu kita set menjadi 10 detik per game
+        timeInMillis = 11000; //waktu kita set menjadi 10 detik per game
         timer = new CountDownTimer(timeInMillis,1000) {
             @Override
             public void onTick(long s) {

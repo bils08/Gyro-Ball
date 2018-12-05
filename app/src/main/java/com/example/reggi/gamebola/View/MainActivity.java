@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected FragmentManager fragmentManager;
     protected Presenter p;
     protected DrawerLayout drawer;
-    protected Adapter adapter;
     protected RelativeLayout myLayout;
     protected AnimationDrawable animationDrawable;
     protected NavigationView navigationView;
@@ -140,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, this.fragmentGame).commit();
                 break;
             case R.id.highscore:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new FragmentHighScore()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, this.fragmentHighScore).commit();
                 break;
             case R.id.settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSetting()).commit();
