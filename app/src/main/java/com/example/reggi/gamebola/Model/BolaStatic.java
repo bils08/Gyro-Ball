@@ -2,20 +2,20 @@ package com.example.reggi.gamebola.Model;
 
 import java.util.Random;
 
-public class Obstacle {
+public class BolaStatic {
     protected int x,y;
-    protected int sisi;
+    protected int radius;
     protected Game game;
     protected Random rand;
 
-    public Obstacle(){
+    public BolaStatic(){
         this.rand = new Random();
-        this.sisi = 100;
+        this.radius = 50;
     }
 
     public void randomPosition(int width, int height){
-        this.x = rand.nextInt(100);
-        this.y = rand.nextInt(100);
+        this.x = this.rand.nextInt(width - radius)+radius;
+        this.y = this.rand.nextInt(height - radius)+radius;
     }
 
     public int getX() {
@@ -26,7 +26,7 @@ public class Obstacle {
         return y;
     }
 
-    public int getSisi() {
-        return sisi;
+    public int getRadius() {
+        return radius;
     }
 }

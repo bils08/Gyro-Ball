@@ -1,9 +1,13 @@
 package com.example.reggi.gamebola;
 
 import com.example.reggi.gamebola.Model.Bola;
+import com.example.reggi.gamebola.Model.BolaStatic;
 import com.example.reggi.gamebola.Model.Game;
 import com.example.reggi.gamebola.Model.ListenerGame;
+import com.example.reggi.gamebola.Model.Obstacle;
 import com.example.reggi.gamebola.View.MainActivity;
+
+import java.util.ArrayList;
 
 public class Presenter {
     protected MainActivity mainActivity;
@@ -15,8 +19,16 @@ public class Presenter {
         this.listenerGame.startSensor();
     }
 
-    public Bola getBola(){
+    public ArrayList<Bola> getBola(){
         return this.listenerGame.getBola();
+    }
+
+    public ArrayList<Obstacle> getObstacles(){
+        return this.listenerGame.getObstacles();
+    }
+
+    public BolaStatic getBolaStatic(){
+        return this.listenerGame.getBolaStatic();
     }
 
     public void getPosition(int x, int y){
@@ -57,6 +69,10 @@ public class Presenter {
 
     public void jmlBola(int x){
         this.listenerGame.setJmlBola(x);
+    }
+
+    public void setJmlObstacle(int x){
+        this.listenerGame.setJmlObstacle(x);
     }
 
 }

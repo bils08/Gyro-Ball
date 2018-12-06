@@ -8,13 +8,15 @@ import android.hardware.SensorManager;
 
 import com.example.reggi.gamebola.View.MainActivity;
 
+import java.util.ArrayList;
+
 public class SensorReader implements SensorEventListener {
-    protected Bola bola;
+    protected ArrayList<Bola> bola;
     protected SensorManager manager;
     protected Sensor accelerometer;
     boolean startGame;
 
-    public SensorReader(MainActivity mainActivity, Bola bola){
+    public SensorReader(MainActivity mainActivity, ArrayList<Bola> bola){
         this.bola = bola;
         this.manager = (SensorManager) mainActivity.getSystemService(Context.SENSOR_SERVICE);
         this.accelerometer = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -24,7 +26,9 @@ public class SensorReader implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         if(startGame) {
-            this.bola.updatePosition(event.values);
+            for (int i = 0; i<this.bola.size(); i++) {
+                this.bola.get(i).updatePosition(event.values);
+            }
         }
     }
 

@@ -52,8 +52,8 @@ public class Bola {
     public void randomPosition(int width, int height){
         this.width = width;
         this.height = height;
-        this.x = r.nextInt(width-radius);
-        this.y = r.nextInt(height-radius);
+        this.x = r.nextInt(width-radius)+radius;
+        this.y = r.nextInt(height-radius)+radius;
         this.staticX = r.nextInt(width-radius);
         this.staticY = r.nextInt(width-radius);
         this.obstacleX = r.nextInt(width-radius);

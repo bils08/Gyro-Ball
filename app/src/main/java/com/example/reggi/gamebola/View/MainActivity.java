@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.reggi.gamebola.Model.Bola;
+import com.example.reggi.gamebola.Model.BolaStatic;
+import com.example.reggi.gamebola.Model.Obstacle;
 import com.example.reggi.gamebola.Presenter;
 import com.example.reggi.gamebola.R;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListenerFragmentGame, ListenerHighScore, ListenerSetting, NavigationView.OnNavigationItemSelectedListener {
     protected TextView gameTitle;
@@ -88,8 +93,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public Bola getBola(){
+    public ArrayList<Bola> getBola(){
         return p.getBola();
+    }
+
+    @Override
+    public ArrayList<Obstacle> getObstacles() {
+        return p.getObstacles();
+    }
+
+    @Override
+    public BolaStatic getBolaStatic() {
+        return p.getBolaStatic();
     }
 
     public void draw(float x, float y){
@@ -161,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void setDifficulty(int difficulty) {
-        this.fragmentGame.jmlObstacle = difficulty;
+        this.p.setJmlObstacle(difficulty);
     }
 
     @Override

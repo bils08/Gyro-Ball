@@ -32,9 +32,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.reggi.gamebola.Model.Bola;
+import com.example.reggi.gamebola.Model.BolaStatic;
+import com.example.reggi.gamebola.Model.Obstacle;
 import com.example.reggi.gamebola.Presenter;
 import com.example.reggi.gamebola.R;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class FragmentGame extends Fragment implements View.OnClickListener, Switch.OnCheckedChangeListener {
@@ -51,8 +54,9 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     protected Path path;
     protected int width, height, initiateRadius, score;
     protected Presenter p;
-    protected int jmlObstacle, jmlBola;
-    protected Bola[] movingBall;
+    protected ArrayList<Bola> movingBall;
+    protected ArrayList<Obstacle> obstacles;
+    protected BolaStatic bolaStatic;
 
     public FragmentGame() {
     }
@@ -81,13 +85,19 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.r = new Random();
         this.path = new Path();
         this.initiateRadius = 50;
-        Log.d("coba","bola : "+jmlBola);
-        Log.d("coba","obst : "+jmlObstacle);
+        //Log.d("coba","bola : "+jmlBola);
+        //Log.d("coba","obst : "+jmlObstacle);
 
-        this.movingBall = new Bola[jmlBola];
-        for (int i = 0; i<movingBall.length; i++){
-            movingBall[i] = listenerFragmentGame.getBola();
-        }
+        movingBall = listenerFragmentGame.getBola();
+
+        obstacles = listenerFragmentGame.getObstacles();
+
+        this.bolaStatic = listenerFragmentGame.getBolaStatic();
+        //this.bola = new Bola[this.jmlhBola];
+
+        Log.d("coba",movingBall.size()+" moving");
+        Log.d("coba",obstacles.size()+" obst");
+        Log.d("coba",bolaStatic+" static");
 
         this.newGame.setOnClickListener(this);
         this.exitGame.setOnClickListener(this);
@@ -148,20 +158,18 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     }
 
     public void drawStaticBall() {
-        Bola staticBall = listenerFragmentGame.getBola();
-        float x = staticBall.getStaticX();
-        float y = staticBall.getStaticY();
-        int radius = staticBall.getRadius();
+        float x = bolaStatic.getX();
+        float y = bolaStatic.getY();
+        int radius = bolaStatic.getRadius();
         this.paint.setColor(Color.BLACK);
         canvas.drawCircle(x, y, radius, paint);
         ivCanvas.invalidate();
     }
 
     public void drawObstacle() {
-        for (int i = 0; i < this.jmlObstacle; i++) {
-            Bola obstacle = listenerFragmentGame.getBola();
-            int x = obstacle.getObstacleX();
-            int y = obstacle.getObstacleY();
+        for (int i = 0; i < this.obstacles.size(); i++) {
+            int x = obstacles.get(i).getX();
+            int y = obstacles.get(i).getY();
             this.paint.setColor(Color.RED);
             Rect rect = new Rect(x, y, x + 100, y + 100);
             canvas.drawRect(rect, paint);
@@ -173,10 +181,10 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         this.drawStaticBall();
         this.drawObstacle();
-        for (int i = 0; i<movingBall.length; i++) {
-            float x = movingBall[i].getX();
-            float y = movingBall[i].getY();
-            int radius = movingBall[i].getRadius();
+        for (int i = 0; i<movingBall.size(); i++) {
+            float x = movingBall.get(i).getX();
+            float y = movingBall.get(i).getY();
+            int radius = movingBall.get(i).getRadius();
             this.paint.setColor(Color.BLUE);
             canvas.drawCircle(x, y, radius, paint);
         }

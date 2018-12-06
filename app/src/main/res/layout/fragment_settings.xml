@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:text="@string/difficulty"
         android:textSize="@dimen/txtSize"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tvDifficulty"/>
 
     <EditText
         android:id="@+id/difficulty"
@@ -21,8 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/tvDifficulty"
         android:layout_centerHorizontal="true"
+        android:textSize="@dimen/txtSize"
         android:inputType="number"/>
-        android:textSize="@dimen/txtSize" />
 
     <TextView
         android:id="@+id/tvJumlahBola"
@@ -31,15 +32,15 @@
         android:text="@string/jumlah_bola"
         android:textSize="@dimen/txtSize"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/difficulty" />
+        android:layout_below="@+id/difficulty"/>
 
     <EditText
         android:id="@+id/jumlahBola"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/difficulty"
-        android:layout_toRightOf="@+id/tvJumlahBola"
-        android:inputType="number"/>
+        android:layout_toRightOf="@+id/tvJumlahBola
+        android:inputType="number"
         android:textSize="@dimen/txtSize" />
 
     <Button
@@ -48,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/jumlahBola"
         android:layout_centerHorizontal="true"
+        android:id="@+id/apply"
         android:text="Apply"
         android:textSize="@dimen/txtSize" />
 
