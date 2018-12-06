@@ -39,6 +39,10 @@ public class Presenter {
         this.mainActivity.increaseScore();
     }
 
+    public void decreaseScore(){
+        this.mainActivity.decreaseScore();
+    }
+
     public void updateTimer(String time){
         this.mainActivity.updateTimeToFragment(time);
     }
@@ -49,6 +53,10 @@ public class Presenter {
 
     public void timerEnd(boolean end){
         this.mainActivity.timeEnd(end);
+    }
+
+    public void jmlBola(int x){
+        this.listenerGame.setJmlBola(x);
     }
 
 }

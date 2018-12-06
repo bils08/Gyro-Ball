@@ -3,52 +3,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.FragmentSetting"
-    android:background="@android:color/holo_blue_light">
+    android:background="@android:color/holo_blue_light"
+    tools:context=".View.FragmentSetting">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tvDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:text="@string/difficulty"
         android:textSize="@dimen/txtSize"
         android:layout_centerHorizontal="true"
         android:id="@+id/tvDifficulty"/>
+=======
+        android:layout_centerInParent="true"
+        android:text="@string/difficulty"
+        android:textSize="@dimen/txtSize" />
+>>>>>>> Stashed changes
 
     <EditText
+        android:id="@+id/difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/difficulty"
-        android:textSize="@dimen/txtSize"
+        android:layout_centerInParent="true"
         android:layout_toRightOf="@+id/tvDifficulty"
+<<<<<<< Updated upstream
         android:layout_centerHorizontal="true"
         android:inputType="number"/>
+=======
+        android:textSize="@dimen/txtSize" />
+>>>>>>> Stashed changes
 
     <TextView
+        android:id="@+id/tvJumlahBola"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:text="@string/jumlah_bola"
         android:textSize="@dimen/txtSize"
         android:layout_centerHorizontal="true"
+=======
+>>>>>>> Stashed changes
         android:layout_below="@+id/difficulty"
-        android:id="@+id/tvJumlahBola"/>
+        android:layout_centerInParent="true"
+        android:text="@string/jumlah_bola"
+        android:textSize="@dimen/txtSize" />
 
     <EditText
+        android:id="@+id/jumlahBola"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/jumlahBola"
-        android:textSize="@dimen/txtSize"
+        android:layout_below="@+id/difficulty"
         android:layout_toRightOf="@+id/tvJumlahBola"
+<<<<<<< Updated upstream
         android:layout_below="@+id/difficulty"
         android:inputType="number"/>
+=======
+        android:textSize="@dimen/txtSize" />
+>>>>>>> Stashed changes
 
     <Button
+        android:id="@+id/apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/jumlahBola"
+<<<<<<< Updated upstream
         android:layout_centerHorizontal="true"
         android:id="@+id/apply"
+=======
+        android:layout_centerInParent="true"
+>>>>>>> Stashed changes
         android:text="Apply"
-        android:textSize="@dimen/txtSize"/>
+        android:textSize="@dimen/txtSize" />
 
 </RelativeLayout>

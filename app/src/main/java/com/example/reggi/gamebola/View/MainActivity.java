@@ -117,6 +117,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.fragmentGame.score++;
     }
 
+    public void decreaseScore(){
+        this.fragmentGame.score--;
+    }
+
     public void updateTimeToFragment(String time){
         this.fragmentGame.timer.setText(time);
     }
@@ -124,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void timeEnd(boolean end){
         this.fragmentGame.finishGame(end);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -161,6 +166,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void setJumlahBola(int jumlahBola) {
-        this.fragmentGame.jmlBola = jumlahBola;
+        this.p.jmlBola(jumlahBola);
     }
 }

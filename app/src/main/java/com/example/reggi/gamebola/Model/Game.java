@@ -7,6 +7,7 @@ public class Game implements ListenerGame {
     protected Bola bola;
     protected SensorReader sensorReader;
     protected Timer timer;
+    protected int jmlhBola;
     protected Presenter p;
 
     public Game(MainActivity mainActivity, Presenter p){
@@ -51,12 +52,21 @@ public class Game implements ListenerGame {
         this.p.increaseScore();
     }
 
+    public void decreaseScore(){
+        this.p.decreaseScore();
+    }
+
     public void updateTimeToPresenter(String time){
         this.p.updateTimer(time);
     }
 
     public void timerEnd(boolean end){
         this.p.timerEnd(end);
+    }
+
+    @Override
+    public void setJmlBola(int x) {
+        this.jmlhBola = x;
     }
 
 

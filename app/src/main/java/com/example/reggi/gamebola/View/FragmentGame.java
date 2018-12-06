@@ -104,6 +104,9 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
             this.listenerFragmentGame.startGameTrue();
             this.startTime();
         } else if (v == exitGame) {
+            //this.startTime();
+        }
+        else if(v == exitGame){
             System.exit(1);
         }
     }

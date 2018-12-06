@@ -61,4 +61,5 @@ public class FragmentSetting extends Fragment implements View.OnClickListener {
             }
         }
     }
+
 }
