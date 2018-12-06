@@ -8,4 +8,5 @@ public interface ListenerGame {
     public void stopGameTrue();
     public void startTimer();
     public void timerEnd(boolean end);
+    public void setJmlBola(int x);
 }

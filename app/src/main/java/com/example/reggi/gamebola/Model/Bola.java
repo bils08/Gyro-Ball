@@ -71,13 +71,17 @@ public class Bola {
         Log.d("y : ", String.valueOf(values[1]));
         Log.d("z : ", String.valueOf(values[2]));
             if (!isCornered()) {
-                this.speedX -= values[0] / 3;
-                this.speedY -= values[1] / -3;
+                this.speedX -= values[0] / 10;
+                this.speedY -= values[1] / -10;
 
                 this.x += speedX;
                 this.y += speedY;
 
                 this.game.onBolaPositionChanged();
+                if(isIntersectedObstacle()){
+                    this.decreaseScore();
+                }
+
                 if(isMatching()){
                     this.staticX = r.nextInt(this.width-radius);
                     this.staticY = r.nextInt(this.height-radius);
@@ -116,11 +120,18 @@ public class Bola {
         return false;
     }
 
-    public boolean isIntersected(){
+    public boolean isIntersectedObstacle(){
+        if(Math.abs(x-obstacleX) <= radius && Math.abs(y-obstacleY) <= radius){
+            return true;
+        }
         return false;
     }
 
     public void increaseScore(){
         this.game.updateScore();
+    }
+
+    public void decreaseScore(){
+        this.game.decreaseScore();
     }
 }
