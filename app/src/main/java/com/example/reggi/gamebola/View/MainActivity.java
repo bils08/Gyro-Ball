@@ -1,5 +1,6 @@
 package com.example.reggi.gamebola.View;
 
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 import com.example.reggi.gamebola.Model.Bola;
 import com.example.reggi.gamebola.Presenter;
 import com.example.reggi.gamebola.R;
+
+import java.lang.reflect.Type;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListenerFragmentGame, ListenerHighScore, ListenerSetting, NavigationView.OnNavigationItemSelectedListener {
     protected TextView gameTitle;
@@ -55,6 +58,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.game = findViewById(R.id.btnNewGame);
         this.exit = findViewById(R.id.btnExit);
         this.gameTitle = findViewById(R.id.title);
+        Typeface customFont= null;
+        Typeface customFont2= null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            customFont = getResources().getFont(R.font.dimis);
+            customFont2=getResources().getFont(R.font.dimitri);
+        }
+        this.gameTitle.setTypeface(customFont);
+        this.game.setTypeface(customFont2);
+        this.exit.setTypeface(customFont2);
 
         this.p = new Presenter(this);
         this.fragmentManager = getSupportFragmentManager();

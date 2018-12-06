@@ -29,8 +29,8 @@
             android:id="@+id/title"
             android:text="Gyro Ball"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
-            android:textSize="50dp"/>
+            android:layout_marginTop="150dp"
+            android:textSize="60dp"/>
 
 
         <Button
@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnNewGame"
             android:text="@string/btnGame"
+            android:textSize="25dp"
             android:background="@drawable/btn_start_bg"
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"/>
@@ -47,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnExit"
+            android:textSize="25dp"
             android:background="@drawable/btn_exit_bg"
             android:layout_below="@id/btnNewGame"
             android:layout_centerInParent="true"/>
