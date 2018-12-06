@@ -37,7 +37,7 @@ import com.example.reggi.gamebola.R;
 
 import java.util.Random;
 
-public class FragmentGame extends Fragment implements View.OnClickListener, Switch.OnCheckedChangeListener{
+public class FragmentGame extends Fragment implements View.OnClickListener, Switch.OnCheckedChangeListener {
     protected ListenerFragmentGame listenerFragmentGame;
     protected TextView timer, scoreText;
     protected Switch nightMode;
@@ -51,12 +51,17 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     protected Path path;
     protected int width, height, initiateRadius, score;
     protected Presenter p;
+    protected int jmlObstacle, jmlBola;
+    protected Bola[] movingBall;
 
-    public FragmentGame(){}
+    public FragmentGame() {
+    }
 
-    public static FragmentGame newInstance(ListenerFragmentGame listener, Presenter p){
+    public static FragmentGame newInstance(ListenerFragmentGame listener, Presenter p) {
         FragmentGame result = new FragmentGame();
         result.listenerFragmentGame = listener;
+        //result.jmlBola = 1;
+        //result.jmlObstacle = 1;
         result.p = p;
         return result;
     }
@@ -76,6 +81,13 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.r = new Random();
         this.path = new Path();
         this.initiateRadius = 50;
+        Log.d("coba","bola : "+jmlBola);
+        Log.d("coba","obst : "+jmlObstacle);
+
+        this.movingBall = new Bola[jmlBola];
+        for (int i = 0; i<movingBall.length; i++){
+            movingBall[i] = listenerFragmentGame.getBola();
+        }
 
         this.newGame.setOnClickListener(this);
         this.exitGame.setOnClickListener(this);
@@ -86,13 +98,12 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
 
     @Override
     public void onClick(View v) {
-        if(v == newGame){
+        if (v == newGame) {
             this.initiateCanvas();
-            this.p.getPosition(width,height);
+            this.p.getPosition(width, height);
             this.listenerFragmentGame.startGameTrue();
             this.startTime();
-        }
-        else if(v == exitGame){
+        } else if (v == exitGame) {
             System.exit(1);
         }
     }
@@ -100,15 +111,14 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(isChecked){
+        if (isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        else{
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
 
-    public void initiateCanvas(){
+    public void initiateCanvas() {
         width = ivCanvas.getMeasuredWidth();
         height = ivCanvas.getMeasuredHeight();
         this.bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
@@ -116,7 +126,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.canvas = new Canvas(bitmap);
     }
 
-    public void resetGame(){
+    public void resetGame() {
         this.listenerFragmentGame.stopGameTrue();
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         ivCanvas.invalidate();
@@ -126,53 +136,56 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.score = 0;
     }
 
-    public void finishGame(boolean finish){
-        if(finish){
+    public void finishGame(boolean finish) {
+        if (finish) {
             Toast toast = Toast.makeText(getActivity(), "Time is up! Your last score is : " + String.valueOf(this.score), Toast.LENGTH_SHORT);
             this.resetGame();
             toast.show();
         }
     }
 
-    public void drawStaticBall(){
+    public void drawStaticBall() {
         Bola staticBall = listenerFragmentGame.getBola();
         float x = staticBall.getStaticX();
         float y = staticBall.getStaticY();
         int radius = staticBall.getRadius();
         this.paint.setColor(Color.BLACK);
-        canvas.drawCircle(x,y,radius,paint);
+        canvas.drawCircle(x, y, radius, paint);
         ivCanvas.invalidate();
     }
 
-    public void drawObstacle(){
-        Bola obstacle = listenerFragmentGame.getBola();
-        int x = obstacle.getObstacleX();
-        int y = obstacle.getObstacleY();
-        this.paint.setColor(Color.RED);
-        Rect rect = new Rect(x,y,x+100,y+100);
-        canvas.drawRect(rect, paint);
-        ivCanvas.invalidate();
+    public void drawObstacle() {
+        for (int i = 0; i < this.jmlObstacle; i++) {
+            Bola obstacle = listenerFragmentGame.getBola();
+            int x = obstacle.getObstacleX();
+            int y = obstacle.getObstacleY();
+            this.paint.setColor(Color.RED);
+            Rect rect = new Rect(x, y, x + 100, y + 100);
+            canvas.drawRect(rect, paint);
+            ivCanvas.invalidate();
+        }
     }
 
-    public void drawBall(){
+    public void drawBall() {
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         this.drawStaticBall();
         this.drawObstacle();
-        Bola movingBall = listenerFragmentGame.getBola();
-        float x = movingBall.getX();
-        float y = movingBall.getY();
-        int radius = movingBall.getRadius();
-        this.paint.setColor(Color.BLUE);
-        canvas.drawCircle(x,y,radius,paint);
+        for (int i = 0; i<movingBall.length; i++) {
+            float x = movingBall[i].getX();
+            float y = movingBall[i].getY();
+            int radius = movingBall[i].getRadius();
+            this.paint.setColor(Color.BLUE);
+            canvas.drawCircle(x, y, radius, paint);
+        }
         ivCanvas.invalidate();
         this.updateScore();
     }
 
-    public void updateScore(){
+    public void updateScore() {
         this.scoreText.setText("SCORE : " + String.valueOf(score));
     }
 
-    public void startTime(){
+    public void startTime() {
         this.listenerFragmentGame.startTimer();
     }
 }

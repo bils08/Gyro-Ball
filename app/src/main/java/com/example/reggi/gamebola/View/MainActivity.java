@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.p = new Presenter(this);
         this.fragmentManager = getSupportFragmentManager();
         this.fragmentGame = FragmentGame.newInstance(this, p);
+        this.fragmentSetting = FragmentSetting.newInstance(this);
         this.fragmentHighScore = FragmentHighScore.newInstance(this, this.getLayoutInflater());
 
         this.game.setOnClickListener(this);
@@ -143,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, this.fragmentHighScore).commit();
                 break;
             case R.id.settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSetting()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, this.fragmentSetting).commit();
                 break;
             case R.id.exit:
                 finish();
@@ -154,22 +155,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public int getDifficulty() {
-        return 0;
-    }
-
-    @Override
-    public int getJumlahBola() {
-        return 0;
-    }
-
-    @Override
     public void setDifficulty(int difficulty) {
-
+        this.fragmentGame.jmlObstacle = difficulty;
     }
 
     @Override
     public void setJumlahBola(int jumlahBola) {
-
+        this.fragmentGame.jmlBola = jumlahBola;
     }
 }
