@@ -11,44 +11,27 @@
         android:id="@+id/tvDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
         android:text="@string/difficulty"
         android:textSize="@dimen/txtSize"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/tvDifficulty"/>
-=======
-        android:layout_centerInParent="true"
-        android:text="@string/difficulty"
-        android:textSize="@dimen/txtSize" />
->>>>>>> Stashed changes
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_toRightOf="@+id/tvDifficulty"
-<<<<<<< Updated upstream
         android:layout_centerHorizontal="true"
         android:inputType="number"/>
-=======
         android:textSize="@dimen/txtSize" />
->>>>>>> Stashed changes
 
     <TextView
         android:id="@+id/tvJumlahBola"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
         android:text="@string/jumlah_bola"
         android:textSize="@dimen/txtSize"
         android:layout_centerHorizontal="true"
-=======
->>>>>>> Stashed changes
-        android:layout_below="@+id/difficulty"
-        android:layout_centerInParent="true"
-        android:text="@string/jumlah_bola"
-        android:textSize="@dimen/txtSize" />
+        android:layout_below="@+id/difficulty" />
 
     <EditText
         android:id="@+id/jumlahBola"
@@ -56,24 +39,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/difficulty"
         android:layout_toRightOf="@+id/tvJumlahBola"
-<<<<<<< Updated upstream
-        android:layout_below="@+id/difficulty"
         android:inputType="number"/>
-=======
         android:textSize="@dimen/txtSize" />
->>>>>>> Stashed changes
 
     <Button
         android:id="@+id/apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/jumlahBola"
-<<<<<<< Updated upstream
         android:layout_centerHorizontal="true"
-        android:id="@+id/apply"
-=======
-        android:layout_centerInParent="true"
->>>>>>> Stashed changes
         android:text="Apply"
         android:textSize="@dimen/txtSize" />
 
