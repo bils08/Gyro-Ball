@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/dividerBottom"
-        android:layout_below="@id/dividerTop"/>
+        android:layout_below="@id/dividerTop" />
 
 
     <TextView
@@ -55,7 +55,9 @@
         android:layout_marginEnd="110dp"
         android:text="@string/btnGame"
         android:backgroundTint="?attr/buttonColor"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="110dp" />
 
     <Button
         android:id="@+id/exitGame"
@@ -66,7 +68,9 @@
         android:layout_marginEnd="11dp"
         android:text="@string/btnExit"
         android:backgroundTint="?attr/buttonColor"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="11dp" />
 
     <Switch
         android:layout_width="wrap_content"

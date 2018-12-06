@@ -8,6 +8,8 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
+    android:id="@+id/myLayout"
+    android:background="@drawable/background_animated" />
 
     <RelativeLayout
         android:layout_width="match_parent"
