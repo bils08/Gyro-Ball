@@ -20,6 +20,7 @@ public class Game implements ListenerGame {
     public Game(MainActivity mainActivity, Presenter p){
         this.p = p;
         this.bola = new ArrayList<>();
+        bola.add(new Bola(this,50)); //jika setting bola belum diisi maka otomatis bola berjumlah 1
         this.obstacles = new ArrayList<>();
         this.bolaStatic = new BolaStatic();
         this.sensorReader = new SensorReader(mainActivity, bola);
@@ -106,6 +107,7 @@ public class Game implements ListenerGame {
     @Override
     public void setJmlObstacle(int x) {
         this.jmlhObs = x;
+        this.obstacles.clear();
         for (int i = 0; i<jmlhObs; i++){
             this.obstacles.add(new Obstacle());
         }

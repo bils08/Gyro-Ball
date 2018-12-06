@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/difficulty"
         android:textSize="@dimen/txtSize"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/tvDifficulty"/>
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/difficulty"
@@ -39,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/difficulty"
-        android:layout_toRightOf="@+id/tvJumlahBola
+        android:layout_toRightOf="@+id/tvJumlahBola"
         android:inputType="number"
         android:textSize="@dimen/txtSize" />
 
@@ -49,7 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/jumlahBola"
         android:layout_centerHorizontal="true"
-        android:id="@+id/apply"
         android:text="Apply"
         android:textSize="@dimen/txtSize" />
 
