@@ -59,8 +59,6 @@ public class FragmentSetting extends Fragment implements View.OnClickListener {
             else{
                 this.listener.setJumlahBola(Integer.parseInt(this.jmlBola.getText().toString()));
             }
-            Log.d("coba","difficulty : "+this.listener.getDifficulty());
-            Log.d("coba","jumlah bola : "+this.listener.getJumlahBola());
         }
     }
 }
