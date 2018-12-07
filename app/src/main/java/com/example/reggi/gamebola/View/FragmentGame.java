@@ -1,5 +1,6 @@
 package com.example.reggi.gamebola.View;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -9,12 +10,14 @@ import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.drawable.AnimationDrawable;
 import android.hardware.SensorEventListener;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -70,7 +73,6 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         return result;
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View result = inflater.inflate(R.layout.fragment_game, null);
@@ -79,7 +81,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.ivCanvas = result.findViewById(R.id.canvas);
         this.newGame = result.findViewById(R.id.newGame);
         this.exitGame = result.findViewById(R.id.exitGame);
-        this.nightMode = (Switch) result.findViewById(R.id.nightMode);
+        this.nightMode = result.findViewById(R.id.nightMode);
 
         this.paint = new Paint();
         this.r = new Random();
@@ -109,6 +111,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     @Override
     public void onClick(View v) {
         if (v == newGame) {
+            this.newGame.setTextColor(Color.BLACK);
             this.initiateCanvas();
             this.p.getPosition(width, height);
             this.listenerFragmentGame.startGameTrue();
