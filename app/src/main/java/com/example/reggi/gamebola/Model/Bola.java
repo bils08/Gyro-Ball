@@ -10,19 +10,22 @@ import java.util.Random;
 
 public class Bola {
     protected Game game;
-    protected int radius, width, height;
-    protected float x,y, speedX, speedY;
+    protected int radius, width, height, idx, idxBump1, idxBump2;
+    protected float x,y, speedX, speedY, berat;
     protected BolaStatic bolaStatic;
     protected ArrayList<Obstacle> obstacle;
-    protected Random r = new Random();
+    protected Random r;
 
     public Bola(Game game, int radius, ArrayList<Obstacle> obstacle, BolaStatic bolaStatic){
         this.speedX = 0;
         this.speedY = 0;
+        this.idx = -1;
+        this.r = new Random();
         this.game = game;
         this.radius = radius;
         this.obstacle = obstacle;
         this.bolaStatic = bolaStatic;
+        this.berat = (float) (r.nextFloat()*(2-0.5)+0.5);
     }
 
     public float getX(){
@@ -60,25 +63,60 @@ public class Bola {
         this.y = r.nextInt(height-radius)+radius;
     }
 
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
     public void updatePosition(float[]values){
-        Log.d("x : ", String.valueOf(values[0]));
-        Log.d("y : ", String.valueOf(values[1]));
-        Log.d("z : ", String.valueOf(values[2]));
+        //Log.d("x : ", String.valueOf(values[0]));
+        //Log.d("y : ", String.valueOf(values[1]));
+        //Log.d("z : ", String.valueOf(values[2]));
             if (!isCornered()) {
-                this.speedX -= values[0] / 10;
-                this.speedY -= values[1] / -10;
+                if (!isBump(this.game.bola)) {
+                    this.speedX -= (values[0] / 10) * this.berat;
+                    this.speedY -= (values[1] / -10) * this.berat;
 
-                this.x += speedX;
-                this.y += speedY;
+                    this.x += speedX;
+                    this.y += speedY;
 
-                this.game.onBolaPositionChanged();
-                if(isIntersectedObstacle()){
-                    this.decreaseScore();
+                    this.game.onBolaPositionChanged();
+                    if (isIntersectedObstacle()) {
+                        this.decreaseScore();
+                        this.obstacle.get(idx).setX(r.nextInt(this.width - radius));
+                        this.obstacle.get(idx).setY(r.nextInt(this.height - radius));
+                    }
+
+                    if (isMatching()) {
+                        this.bolaStatic.setX(r.nextInt(this.width - radius));
+                        this.bolaStatic.setY(r.nextInt(this.height - radius));
+                    }
                 }
-
-                if(isMatching()){
-                    this.bolaStatic.setX(r.nextInt(this.width-radius));
-                    this.bolaStatic.setY(r.nextInt(this.height-radius));
+                else{
+                    Log.d("coba", "BUMP!!");
+                    if (this.game.bola.get(idxBump1).getX() + this.game.bola.get(idxBump1).getRadius() == this.game.bola.get(idxBump2).getX()-this.game.bola.get(idxBump2).getRadius()) {
+                        this.game.bola.get(idxBump1).setX(this.game.bola.get(idxBump2).getX()-this.game.bola.get(idxBump2).getRadius() - this.game.bola.get(idxBump1).getRadius());
+                        this.game.bola.get(idxBump2).setX(this.game.bola.get(idxBump1).getX()+this.game.bola.get(idxBump1).getRadius() + this.game.bola.get(idxBump2).getRadius());
+                        speedX *= -0.4;
+                    }
+                    if (this.game.bola.get(idxBump1).getY() + this.game.bola.get(idxBump1).getRadius() == this.game.bola.get(idxBump2).getY()-this.game.bola.get(idxBump2).getRadius()) {
+                        this.game.bola.get(idxBump1).setY(this.game.bola.get(idxBump2).getY()-this.game.bola.get(idxBump2).getRadius() - this.game.bola.get(idxBump1).getRadius());
+                        this.game.bola.get(idxBump2).setY(this.game.bola.get(idxBump1).getY()+this.game.bola.get(idxBump1).getRadius() + this.game.bola.get(idxBump2).getRadius());
+                        speedY *= -0.4;
+                    }
+                    if (this.game.bola.get(idxBump2).getX() + this.game.bola.get(idxBump2).getRadius() == this.game.bola.get(idxBump1).getX()-this.game.bola.get(idxBump1).getRadius()) {
+                        this.game.bola.get(idxBump2).setX(this.game.bola.get(idxBump1).getX()-this.game.bola.get(idxBump1).getRadius() - this.game.bola.get(idxBump2).getRadius());
+                        this.game.bola.get(idxBump1).setX(this.game.bola.get(idxBump2).getX()+this.game.bola.get(idxBump2).getRadius() + this.game.bola.get(idxBump1).getRadius());
+                        speedX *= -0.4;
+                    }
+                    if (this.game.bola.get(idxBump2).getY() + this.game.bola.get(idxBump2).getRadius() == this.game.bola.get(idxBump1).getY()-this.game.bola.get(idxBump1).getRadius()) {
+                        this.game.bola.get(idxBump2).setY(this.game.bola.get(idxBump1).getY()-this.game.bola.get(idxBump1).getRadius() - this.game.bola.get(idxBump2).getRadius());
+                        this.game.bola.get(idxBump1).setY(this.game.bola.get(idxBump2).getY()+this.game.bola.get(idxBump2).getRadius() + this.game.bola.get(idxBump1).getRadius());
+                        speedY *= -0.4;
+                    }
                 }
             } else {
                 if (x + radius >= width) {
@@ -114,15 +152,32 @@ public class Bola {
         return false;
     }
 
+    public boolean isBump(ArrayList<Bola> bolas){
+        Log.d("coba", "masuk cek bump");
+        boolean res = false;
+        for (int i = 0; i<bolas.size()-1; i++){
+            for (int j = i+1; j<bolas.size(); j++){
+                if (bolas.get(i).getX()+bolas.get(i).radius == bolas.get(j).getX()-bolas.get(j).radius ||
+                        bolas.get(i).getX()-bolas.get(i).radius == bolas.get(j).getX()+bolas.get(j).radius ||
+                        bolas.get(i).getY()+bolas.get(i).radius == bolas.get(j).getY()-bolas.get(j).radius ||
+                        bolas.get(i).getY()-bolas.get(i).radius == bolas.get(j).getY()+bolas.get(j).radius){
+                    this.idxBump1 = i;
+                    this.idxBump2 = j;
+                    res = true;
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+
     public boolean isIntersectedObstacle(){
         boolean res = false;
         for (int i = 0; i<obstacle.size(); i++) {
             if (Math.abs(x - obstacle.get(i).getX()) <= radius && Math.abs(y - obstacle.get(i).getY()) <= radius) {
                 res = true;
+                this.idx = i;
                 break;
-            }
-            else {
-                res = false;
             }
         }
         return res;

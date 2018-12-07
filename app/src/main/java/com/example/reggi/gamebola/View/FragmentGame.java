@@ -113,8 +113,6 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
             this.p.getPosition(width, height);
             this.listenerFragmentGame.startGameTrue();
             this.startTime();
-        } else if (v == exitGame) {
-            //this.startTime();
         }
         else if(v == exitGame){
             System.exit(1);
@@ -178,7 +176,6 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     }
 
     public void drawBall() {
-        Log.d("coba","drawing");
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         this.drawStaticBall();
         this.drawObstacle();

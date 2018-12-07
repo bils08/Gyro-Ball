@@ -22,7 +22,7 @@ public class Game implements ListenerGame {
         this.bola = new ArrayList<>();
         this.obstacles = new ArrayList<>();
         this.bolaStatic = new BolaStatic();
-        bola.add(new Bola(this,50,obstacles,bolaStatic)); //jika setting bola belum diisi maka otomatis bola berjumlah 1
+        this.setJmlBola(1);
         this.sensorReader = new SensorReader(mainActivity, bola);
         this.timer = new Timer(this);
     }
