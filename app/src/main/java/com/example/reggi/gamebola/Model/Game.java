@@ -95,6 +95,7 @@ public class Game implements ListenerGame {
 
     @Override
     public void setJmlBola(int x) {
+        Log.d("coba","Masuk set bola");
         this.jmlhBola = x;
         this.bola.clear();
         Log.d("coba",this.jmlhBola+" bola");
@@ -106,6 +107,7 @@ public class Game implements ListenerGame {
 
     @Override
     public void setJmlObstacle(int x) {
+        Log.d("coba","Masuk set Obst");
         this.jmlhObs = x;
         this.obstacles.clear();
         for (int i = 0; i<jmlhObs; i++){
