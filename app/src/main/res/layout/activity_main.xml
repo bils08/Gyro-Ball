@@ -82,6 +82,6 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
 
-    //Billy Komen 
+    //Billy Komen
 
 </android.support.v4.widget.DrawerLayout>

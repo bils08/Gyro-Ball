@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class FragmentHighScore extends Fragment {
     protected TextView tvHighScore,tvRank,tvScore;
     protected RelativeLayout myLayout;
     protected AnimationDrawable animationDrawable;
-
+    Xml layout;
 
     public FragmentHighScore() {
     }

@@ -7,4 +7,8 @@
     <item
         android:drawable="@drawable/second_layer_score"
         android:duration="3000" />
+
+    <item
+        android:drawable="@drawable/third_layer_score"
+        android:duration="3000" />
 </animation-list>

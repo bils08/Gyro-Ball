@@ -1,6 +1,7 @@
 package com.example.reggi.gamebola.View;
 
 
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.reggi.gamebola.R;
 
@@ -20,6 +22,7 @@ import com.example.reggi.gamebola.R;
 public class FragmentSetting extends Fragment implements View.OnClickListener {
 
     protected ListenerSetting listener;
+    protected TextView difficult, jumlahBola;
     protected Button apply;
     protected EditText difficulty, jmlBola;
     protected RelativeLayout myLayout;
@@ -44,13 +47,23 @@ public class FragmentSetting extends Fragment implements View.OnClickListener {
         this.apply = result.findViewById(R.id.apply);
         this.difficulty = result.findViewById(R.id.difficulty);
         this.jmlBola = result.findViewById(R.id.jumlahBola);
+        this.difficult=result.findViewById(R.id.tvDifficulty);
+        this.jumlahBola=result.findViewById(R.id.tvJumlahBola);
+
+        Typeface myCustomeFont= null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            myCustomeFont = getResources().getFont(R.font.dimitri);
+        }
+        this.apply.setTypeface(myCustomeFont);
+        this.difficult.setTypeface(myCustomeFont);
+        this.jumlahBola.setTypeface(myCustomeFont);
         this.apply.setOnClickListener(this);
 
         //Billy Update
         myLayout=result.findViewById(R.id.settings);
         animationDrawable=(AnimationDrawable) myLayout.getBackground();
-        animationDrawable.setEnterFadeDuration(3000);
-        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(1000);
         animationDrawable.start();
 
         return result;

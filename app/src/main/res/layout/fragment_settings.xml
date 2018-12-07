@@ -3,42 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_animated_setting"
-    tools:context=".View.FragmentSetting"
-    android:id="@+id/settings">
+    android:background="#fff"
+    tools:context=".View.FragmentSetting">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/settings"
+        android:background="@drawable/background_animated_setting">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/tvDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
         android:text="@string/difficulty"
-        android:textSize="@dimen/txtSize"
-        android:layout_centerHorizontal="true" />
+        android:textSize="@dimen/txtSize" />
 
     <EditText
         android:id="@+id/difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/tvDifficulty"
+        android:layout_alignBottom="@+id/tvDifficulty"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/txtSize"
-        android:inputType="number"/>
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/tvDifficulty"
+        android:inputType="number"
+        android:textSize="@dimen/txtSize" />
 
     <TextView
         android:id="@+id/tvJumlahBola"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/jumlah_bola"
-        android:textSize="@dimen/txtSize"
+        android:layout_below="@+id/difficulty"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/difficulty"/>
+        android:layout_marginTop="67dp"
+        android:text="@string/jumlah_bola"
+        android:textSize="@dimen/txtSize" />
 
     <EditText
         android:id="@+id/jumlahBola"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/difficulty"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="47dp"
         android:layout_toRightOf="@+id/tvJumlahBola"
         android:inputType="number"
         android:textSize="@dimen/txtSize" />
@@ -49,7 +60,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/jumlahBola"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
         android:text="Apply"
         android:textSize="@dimen/txtSize" />
+    </RelativeLayout>
 
 </RelativeLayout>
