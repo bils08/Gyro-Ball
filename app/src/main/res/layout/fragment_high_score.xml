@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0000">
+    android:background="@drawable/background_animated_highscore"
+    android:id="@+id/scoreFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/showSkor"
         android:text="@string/textHighScore"
-        android:textColor="#FF00"
+        android:textColor="#fff"
         android:textSize="30dp"
         android:padding="10dp"
         android:textAlignment="center"/>
@@ -20,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textRank"
-        android:textColor="#FF00"
+        android:textColor="#fff"
         android:layout_below="@id/showSkor"
         android:textSize="20dp"
         android:padding="10dp"
@@ -30,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textScore"
-        android:textColor="#FF00"
+        android:textColor="#fff"
         android:layout_below="@id/showSkor"
         android:layout_centerInParent="true"
         android:textSize="20dp"
