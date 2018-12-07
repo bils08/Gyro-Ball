@@ -22,6 +22,7 @@ public class Game implements ListenerGame {
         this.bola = new ArrayList<>();
         this.obstacles = new ArrayList<>();
         this.bolaStatic = new BolaStatic();
+        bola.add(new Bola(this,50,obstacles,bolaStatic)); //jika setting bola belum diisi maka otomatis bola berjumlah 1
         this.sensorReader = new SensorReader(mainActivity, bola);
         this.timer = new Timer(this);
     }
@@ -94,18 +95,21 @@ public class Game implements ListenerGame {
 
     @Override
     public void setJmlBola(int x) {
+        Log.d("coba","Masuk set bola");
         this.jmlhBola = x;
         this.bola.clear();
         Log.d("coba",this.jmlhBola+" bola");
         Log.d("coba",this.jmlhObs+" obs");
         for (int i = 0; i<this.jmlhBola; i++) {
-            this.bola.add(new Bola(this,50));
+            this.bola.add(new Bola(this,50, obstacles, bolaStatic));
         }
     }
 
     @Override
     public void setJmlObstacle(int x) {
+        Log.d("coba","Masuk set Obst");
         this.jmlhObs = x;
+        this.obstacles.clear();
         for (int i = 0; i<jmlhObs; i++){
             this.obstacles.add(new Obstacle());
         }
