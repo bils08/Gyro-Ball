@@ -20,9 +20,9 @@ public class Game implements ListenerGame {
     public Game(MainActivity mainActivity, Presenter p){
         this.p = p;
         this.bola = new ArrayList<>();
-        bola.add(new Bola(this,50)); //jika setting bola belum diisi maka otomatis bola berjumlah 1
         this.obstacles = new ArrayList<>();
         this.bolaStatic = new BolaStatic();
+        bola.add(new Bola(this,50,obstacles,bolaStatic)); //jika setting bola belum diisi maka otomatis bola berjumlah 1
         this.sensorReader = new SensorReader(mainActivity, bola);
         this.timer = new Timer(this);
     }
@@ -101,7 +101,7 @@ public class Game implements ListenerGame {
         Log.d("coba",this.jmlhBola+" bola");
         Log.d("coba",this.jmlhObs+" obs");
         for (int i = 0; i<this.jmlhBola; i++) {
-            this.bola.add(new Bola(this,50));
+            this.bola.add(new Bola(this,50, obstacles, bolaStatic));
         }
     }
 

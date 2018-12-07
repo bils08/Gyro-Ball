@@ -5,20 +5,24 @@ import android.util.Log;
 
 import com.example.reggi.gamebola.R;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Bola {
     protected Game game;
     protected int radius, width, height;
-    protected float x,y, speedX, speedY, staticX, staticY;
-    protected int obstacleX, obstacleY;
+    protected float x,y, speedX, speedY;
+    protected BolaStatic bolaStatic;
+    protected ArrayList<Obstacle> obstacle;
     protected Random r = new Random();
 
-    public Bola(Game game, int radius){
+    public Bola(Game game, int radius, ArrayList<Obstacle> obstacle, BolaStatic bolaStatic){
         this.speedX = 0;
         this.speedY = 0;
         this.game = game;
         this.radius = radius;
+        this.obstacle = obstacle;
+        this.bolaStatic = bolaStatic;
     }
 
     public float getX(){
@@ -26,7 +30,7 @@ public class Bola {
     }
 
     public float getStaticX(){
-        return staticX;
+        return this.bolaStatic.getX();
     }
 
     public float getY(){
@@ -34,16 +38,16 @@ public class Bola {
     }
 
     public float getStaticY(){
-        return staticY;
+        return this.bolaStatic.getY();
     }
 
-    public int getObstacleX(){
-        return obstacleX;
+    /*public int getObstacleX(){
+        return this.obstacle.getX();
     }
 
     public int getObstacleY(){
-        return obstacleY;
-    }
+        return this.obstacle.getY();
+    }*/
 
     public int getRadius(){
         return radius;
@@ -54,16 +58,6 @@ public class Bola {
         this.height = height;
         this.x = r.nextInt(width-radius)+radius;
         this.y = r.nextInt(height-radius)+radius;
-        this.staticX = r.nextInt(width-radius);
-        this.staticY = r.nextInt(width-radius);
-        this.obstacleX = r.nextInt(width-radius);
-        this.obstacleY = r.nextInt(width-radius);
-        if(staticX == obstacleX){
-            obstacleX = r.nextInt(width-radius);
-        }
-        else if(staticY == obstacleY){
-            obstacleY = r.nextInt(width-radius);
-        }
     }
 
     public void updatePosition(float[]values){
@@ -83,8 +77,8 @@ public class Bola {
                 }
 
                 if(isMatching()){
-                    this.staticX = r.nextInt(this.width-radius);
-                    this.staticY = r.nextInt(this.height-radius);
+                    this.bolaStatic.setX(r.nextInt(this.width-radius));
+                    this.bolaStatic.setY(r.nextInt(this.height-radius));
                 }
             } else {
                 if (x + radius >= width) {
@@ -113,7 +107,7 @@ public class Bola {
     }
 
     public boolean isMatching(){
-        if(Math.abs(x-staticX) <= radius && Math.abs(y-staticY) <= radius){
+        if(Math.abs(x-this.bolaStatic.getX()) <= radius && Math.abs(y-this.bolaStatic.getY()) <= radius){
             this.increaseScore();
             return true;
         }
@@ -121,10 +115,17 @@ public class Bola {
     }
 
     public boolean isIntersectedObstacle(){
-        if(Math.abs(x-obstacleX) <= radius && Math.abs(y-obstacleY) <= radius){
-            return true;
+        boolean res = false;
+        for (int i = 0; i<obstacle.size(); i++) {
+            if (Math.abs(x - obstacle.get(i).getX()) <= radius && Math.abs(y - obstacle.get(i).getY()) <= radius) {
+                res = true;
+                break;
+            }
+            else {
+                res = false;
+            }
         }
-        return false;
+        return res;
     }
 
     public void increaseScore(){
