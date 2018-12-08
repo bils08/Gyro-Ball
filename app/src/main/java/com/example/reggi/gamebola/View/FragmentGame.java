@@ -172,7 +172,11 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
                 while (obstacles.get(i).getX() >= obstacles.get(j).getX() - obstacles.get(j).getSisi() &&
                         obstacles.get(i).getX() <= obstacles.get(j).getX() + obstacles.get(j).getSisi() ||
                         obstacles.get(i).getY() >= obstacles.get(j).getY() - obstacles.get(j).getSisi() &&
-                                obstacles.get(i).getY() <= obstacles.get(j).getY() + obstacles.get(j).getSisi()) {
+                        obstacles.get(i).getY() <= obstacles.get(j).getY() + obstacles.get(j).getSisi() ||
+                        obstacles.get(i).getX() >= bolaStatic.getX()-bolaStatic.getRadius() &&
+                        obstacles.get(i).getX() <= bolaStatic.getX()+bolaStatic.getRadius() ||
+                        obstacles.get(i).getY() <= bolaStatic.getY()-bolaStatic.getRadius() &&
+                        obstacles.get(i).getY() >= bolaStatic.getY()+bolaStatic.getRadius()) {
                     obstacles.get(i).randomPosition(width, height);
                 }
             }
