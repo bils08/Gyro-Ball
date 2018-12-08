@@ -56,7 +56,6 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     protected Canvas canvas;
     protected Paint paint;
     protected Random r;
-    protected PointF startPoint;
     protected Path path;
     protected int width, height, initiateRadius, score;
     protected Presenter p;

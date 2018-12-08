@@ -36,7 +36,6 @@ public class FragmentHighScore extends Fragment {
     protected RelativeLayout myLayout;
     protected AnimationDrawable animationDrawable;
     protected SQLiteDatabase sql;
-    Xml layout;
 
     public FragmentHighScore() {
     }
@@ -51,7 +50,7 @@ public class FragmentHighScore extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View result = inflater.inflate(R.layout.fragment_high_score,null);
         this.tvHighScore=result.findViewById(R.id.showSkor);
         this.tvRank=result.findViewById(R.id.rank);
@@ -82,7 +81,6 @@ public class FragmentHighScore extends Fragment {
 
         this.listView.setAdapter(adapter);
 
-        //Billy Update
         myLayout=result.findViewById(R.id.scoreFragment);
         animationDrawable=(AnimationDrawable) myLayout.getBackground();
         animationDrawable.setEnterFadeDuration(3000);

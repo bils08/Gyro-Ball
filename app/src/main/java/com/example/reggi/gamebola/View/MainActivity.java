@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.game.setOnClickListener(this);
         this.exit.setOnClickListener(this);
 
-        //Billy Update
         myLayout=findViewById(R.id.myLayout);
         animationDrawable=(AnimationDrawable) myLayout.getBackground();
         animationDrawable.setEnterFadeDuration(3000);

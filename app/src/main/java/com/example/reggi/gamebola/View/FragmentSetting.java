@@ -43,7 +43,6 @@ public class FragmentSetting extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View result = inflater.inflate(R.layout.fragment_settings, container, false);
 
         this.apply = result.findViewById(R.id.apply);
@@ -61,7 +60,6 @@ public class FragmentSetting extends Fragment implements View.OnClickListener {
         this.jumlahBola.setTypeface(myCustomeFont);
         this.apply.setOnClickListener(this);
 
-        //Billy Update
         myLayout=result.findViewById(R.id.settings);
         animationDrawable=(AnimationDrawable) myLayout.getBackground();
         animationDrawable.setEnterFadeDuration(1000);
