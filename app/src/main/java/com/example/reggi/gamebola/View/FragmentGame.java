@@ -97,9 +97,9 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.bolaStatic = listenerFragmentGame.getBolaStatic();
         //this.bola = new Bola[this.jmlhBola];
 
-        Log.d("coba",movingBall.size()+" moving");
-        Log.d("coba",obstacles.size()+" obst");
-        Log.d("coba",bolaStatic+" static");
+        Log.d("coba", movingBall.size() + " moving");
+        Log.d("coba", obstacles.size() + " obst");
+        Log.d("coba", bolaStatic + " static");
 
         this.newGame.setOnClickListener(this);
         this.exitGame.setOnClickListener(this);
@@ -116,8 +116,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
             this.p.getPosition(width, height);
             this.listenerFragmentGame.startGameTrue();
             this.startTime();
-        }
-        else if(v == exitGame){
+        } else if (v == exitGame) {
             System.exit(1);
         }
     }
@@ -169,14 +168,12 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
 
     public void drawObstacle() {
         for (int i = 0; i < this.obstacles.size(); i++) {
-            if(i != 0){
-                for (int j = 0; j < i; j++) {
-                    while (obstacles.get(i).getX() >= obstacles.get(j).getX()-obstacles.get(j).getSisi() &&
-                            obstacles.get(i).getX() <= obstacles.get(j).getX()+obstacles.get(j).getSisi() ||
-                            obstacles.get(i).getY() >= obstacles.get(j).getY()-obstacles.get(j).getSisi() &&
-                            obstacles.get(i).getY() <= obstacles.get(j).getY()+obstacles.get(j).getSisi()){
-                        obstacles.get(i).randomPosition(width,height);
-                    }
+            for (int j = 0; j < i; j++) {
+                while (obstacles.get(i).getX() >= obstacles.get(j).getX() - obstacles.get(j).getSisi() &&
+                        obstacles.get(i).getX() <= obstacles.get(j).getX() + obstacles.get(j).getSisi() ||
+                        obstacles.get(i).getY() >= obstacles.get(j).getY() - obstacles.get(j).getSisi() &&
+                                obstacles.get(i).getY() <= obstacles.get(j).getY() + obstacles.get(j).getSisi()) {
+                    obstacles.get(i).randomPosition(width, height);
                 }
             }
             int x = obstacles.get(i).getX();
@@ -192,7 +189,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         this.drawStaticBall();
         this.drawObstacle();
-        for (int i = 0; i<movingBall.size(); i++) {
+        for (int i = 0; i < movingBall.size(); i++) {
             float x = movingBall.get(i).getX();
             float y = movingBall.get(i).getY();
             int radius = movingBall.get(i).getRadius();
