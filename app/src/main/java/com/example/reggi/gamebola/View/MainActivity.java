@@ -1,5 +1,6 @@
 package com.example.reggi.gamebola.View;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.graphics.drawable.AnimationDrawable;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected RelativeLayout myLayout;
     protected AnimationDrawable animationDrawable;
     protected NavigationView navigationView;
+    protected SQLiteDatabase sql;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.fragmentSetting = FragmentSetting.newInstance(this);
         this.fragmentHighScore = FragmentHighScore.newInstance(this, this.getLayoutInflater());
 
+        this.BuatTabel();
+
         this.game.setOnClickListener(this);
         this.exit.setOnClickListener(this);
 
@@ -102,6 +106,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             System.exit(1);
         }
+    }
+
+    public void BuatTabel(){
+        sql = openOrCreateDatabase("Gyro Ball",MODE_PRIVATE,null); //database
+        sql.execSQL("CREATE TABLE IF NOT EXISTS Highscore(Score Integer);");
     }
 
     public ArrayList<Bola> getBola(){

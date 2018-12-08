@@ -31,6 +31,14 @@ public class Adapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void setData(ArrayList<Integer> newData){
+        if (this.list == null){
+            this.list = new ArrayList<>();
+        }
+        this.list.clear();
+        this.list.addAll(newData);
+    }
+
     @Override
     public int getCount() {
         return this.list.size();

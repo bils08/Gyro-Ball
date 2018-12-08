@@ -2,6 +2,7 @@ package com.example.reggi.gamebola.View;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -43,6 +44,8 @@ import com.example.reggi.gamebola.R;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class FragmentGame extends Fragment implements View.OnClickListener, Switch.OnCheckedChangeListener {
     protected ListenerFragmentGame listenerFragmentGame;
     protected TextView timer, scoreText;
@@ -61,6 +64,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     protected ArrayList<Obstacle> obstacles;
     protected BolaStatic bolaStatic;
     protected boolean start;
+    protected SQLiteDatabase sql;
 
     public FragmentGame() {
     }
@@ -83,6 +87,8 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.newGame = result.findViewById(R.id.newGame);
         this.exitGame = result.findViewById(R.id.exitGame);
         this.nightMode = result.findViewById(R.id.nightMode);
+
+        sql = getActivity().openOrCreateDatabase("Gyro Ball",MODE_PRIVATE,null);
 
         this.start = false;
         this.paint = new Paint();
@@ -158,6 +164,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     public void finishGame(boolean finish) {
         if (finish) {
             Toast toast = Toast.makeText(getActivity(), "Time is up! Your last score is : " + String.valueOf(this.score), Toast.LENGTH_SHORT);
+            sql.execSQL("INSERT INTO Highscore VALUES("+String.valueOf(score)+");");
             this.resetGame();
             toast.show();
             this.start = false;
