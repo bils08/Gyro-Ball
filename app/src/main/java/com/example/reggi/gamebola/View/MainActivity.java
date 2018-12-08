@@ -199,11 +199,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, this.fragmentGame).commit();
     }
 
-    public void changeToHighScore(){
-        navigationView.setCheckedItem(R.id.highscore);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, this.fragmentHighScore).commit();
-    }
-
     @Override
     public void setDifficulty(int difficulty) {
         this.p.setJmlObstacle(difficulty);

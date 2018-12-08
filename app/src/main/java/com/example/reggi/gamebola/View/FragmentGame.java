@@ -169,8 +169,6 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
             toast.show();
             this.start = false;
             this.newGame.setEnabled(true);
-            MainActivity ma = (MainActivity)getActivity();
-            ma.changeToHighScore();
         }
     }
 
