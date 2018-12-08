@@ -169,6 +169,16 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
 
     public void drawObstacle() {
         for (int i = 0; i < this.obstacles.size(); i++) {
+            if(i != 0){
+                for (int j = 0; j < i; j++) {
+                    while (obstacles.get(i).getX() >= obstacles.get(j).getX()-obstacles.get(j).getSisi() &&
+                            obstacles.get(i).getX() <= obstacles.get(j).getX()+obstacles.get(j).getSisi() ||
+                            obstacles.get(i).getY() >= obstacles.get(j).getY()-obstacles.get(j).getSisi() &&
+                            obstacles.get(i).getY() <= obstacles.get(j).getY()+obstacles.get(j).getSisi()){
+                        obstacles.get(i).randomPosition(width,height);
+                    }
+                }
+            }
             int x = obstacles.get(i).getX();
             int y = obstacles.get(i).getY();
             this.paint.setColor(Color.RED);

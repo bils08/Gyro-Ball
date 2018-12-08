@@ -157,10 +157,10 @@ public class Bola {
         boolean res = false;
         for (int i = 0; i<bolas.size()-1; i++){
             for (int j = i+1; j<bolas.size(); j++){
-                if (bolas.get(i).getX()+bolas.get(i).radius == bolas.get(j).getX()-bolas.get(j).radius ||
-                        bolas.get(i).getX()-bolas.get(i).radius == bolas.get(j).getX()+bolas.get(j).radius ||
-                        bolas.get(i).getY()+bolas.get(i).radius == bolas.get(j).getY()-bolas.get(j).radius ||
-                        bolas.get(i).getY()-bolas.get(i).radius == bolas.get(j).getY()+bolas.get(j).radius){
+                if (bolas.get(i).getX()+bolas.get(i).getRadius() == bolas.get(j).getX()-bolas.get(j).getRadius() ||
+                        bolas.get(i).getX()-bolas.get(i).getRadius() == bolas.get(j).getX()+bolas.get(j).getRadius() ||
+                        bolas.get(i).getY()+bolas.get(i).getRadius() == bolas.get(j).getY()-bolas.get(j).getRadius() ||
+                        bolas.get(i).getY()-bolas.get(i).getRadius() == bolas.get(j).getY()+bolas.get(j).getRadius()){
                     this.idxBump1 = i;
                     this.idxBump2 = j;
                     res = true;
@@ -168,6 +168,7 @@ public class Bola {
                 }
             }
         }
+        Log.d("coba",res+"");
         return res;
     }
 

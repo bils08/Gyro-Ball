@@ -14,8 +14,8 @@ public class Obstacle {
     }
 
     public void randomPosition(int width, int height){
-        this.x = rand.nextInt(100);
-        this.y = rand.nextInt(100);
+        this.x = rand.nextInt(width-100);
+        this.y = rand.nextInt(height-100);
     }
 
     public int getX() {
