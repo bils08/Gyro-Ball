@@ -76,7 +76,7 @@ public class Bola {
         //Log.d("y : ", String.valueOf(values[1]));
         //Log.d("z : ", String.valueOf(values[2]));
             if (!isCornered()) {
-                if (!isBump(this.game.bola)) {
+                //if (!isBump(this.game.bola)) {
                     this.speedX -= (values[0] / 10) * this.berat;
                     this.speedY -= (values[1] / -10) * this.berat;
 
@@ -95,30 +95,34 @@ public class Bola {
                         this.bolaStatic.setY(r.nextInt(this.height - radius));
                     }
                 }
-                else{
+                /*else{
                     Log.d("coba", "BUMP!!");
-                    if (this.game.bola.get(idxBump1).getX() + this.game.bola.get(idxBump1).getRadius() == this.game.bola.get(idxBump2).getX()-this.game.bola.get(idxBump2).getRadius()) {
+                    if (this.game.bola.get(idxBump1).getX() + this.game.bola.get(idxBump1).getRadius() >= this.game.bola.get(idxBump2).getX()-this.game.bola.get(idxBump2).getRadius()) {
                         this.game.bola.get(idxBump1).setX(this.game.bola.get(idxBump2).getX()-this.game.bola.get(idxBump2).getRadius() - this.game.bola.get(idxBump1).getRadius());
                         this.game.bola.get(idxBump2).setX(this.game.bola.get(idxBump1).getX()+this.game.bola.get(idxBump1).getRadius() + this.game.bola.get(idxBump2).getRadius());
                         speedX *= -0.4;
+                        Log.d("coba","1");
                     }
-                    if (this.game.bola.get(idxBump1).getY() + this.game.bola.get(idxBump1).getRadius() == this.game.bola.get(idxBump2).getY()-this.game.bola.get(idxBump2).getRadius()) {
+                    if (this.game.bola.get(idxBump1).getY() + this.game.bola.get(idxBump1).getRadius() >= this.game.bola.get(idxBump2).getY()-this.game.bola.get(idxBump2).getRadius()) {
                         this.game.bola.get(idxBump1).setY(this.game.bola.get(idxBump2).getY()-this.game.bola.get(idxBump2).getRadius() - this.game.bola.get(idxBump1).getRadius());
                         this.game.bola.get(idxBump2).setY(this.game.bola.get(idxBump1).getY()+this.game.bola.get(idxBump1).getRadius() + this.game.bola.get(idxBump2).getRadius());
                         speedY *= -0.4;
+                        Log.d("coba","2");
                     }
-                    if (this.game.bola.get(idxBump2).getX() + this.game.bola.get(idxBump2).getRadius() == this.game.bola.get(idxBump1).getX()-this.game.bola.get(idxBump1).getRadius()) {
+                    if (this.game.bola.get(idxBump2).getX() + this.game.bola.get(idxBump2).getRadius() <= this.game.bola.get(idxBump1).getX()-this.game.bola.get(idxBump1).getRadius()) {
                         this.game.bola.get(idxBump2).setX(this.game.bola.get(idxBump1).getX()-this.game.bola.get(idxBump1).getRadius() - this.game.bola.get(idxBump2).getRadius());
                         this.game.bola.get(idxBump1).setX(this.game.bola.get(idxBump2).getX()+this.game.bola.get(idxBump2).getRadius() + this.game.bola.get(idxBump1).getRadius());
                         speedX *= -0.4;
+                        Log.d("coba","3");
                     }
-                    if (this.game.bola.get(idxBump2).getY() + this.game.bola.get(idxBump2).getRadius() == this.game.bola.get(idxBump1).getY()-this.game.bola.get(idxBump1).getRadius()) {
+                    if (this.game.bola.get(idxBump2).getY() + this.game.bola.get(idxBump2).getRadius() <= this.game.bola.get(idxBump1).getY()-this.game.bola.get(idxBump1).getRadius()) {
                         this.game.bola.get(idxBump2).setY(this.game.bola.get(idxBump1).getY()-this.game.bola.get(idxBump1).getRadius() - this.game.bola.get(idxBump2).getRadius());
                         this.game.bola.get(idxBump1).setY(this.game.bola.get(idxBump2).getY()+this.game.bola.get(idxBump2).getRadius() + this.game.bola.get(idxBump1).getRadius());
                         speedY *= -0.4;
+                        Log.d("coba","4");
                     }
                 }
-            } else {
+            }*/ else {
                 if (x + radius >= width) {
                     this.x = width - radius;
                     speedX *= -0.4;
@@ -157,10 +161,10 @@ public class Bola {
         boolean res = false;
         for (int i = 0; i<bolas.size()-1; i++){
             for (int j = i+1; j<bolas.size(); j++){
-                if (bolas.get(i).getX()+bolas.get(i).getRadius() == bolas.get(j).getX()-bolas.get(j).getRadius() ||
-                        bolas.get(i).getX()-bolas.get(i).getRadius() == bolas.get(j).getX()+bolas.get(j).getRadius() ||
-                        bolas.get(i).getY()+bolas.get(i).getRadius() == bolas.get(j).getY()-bolas.get(j).getRadius() ||
-                        bolas.get(i).getY()-bolas.get(i).getRadius() == bolas.get(j).getY()+bolas.get(j).getRadius()){
+                if (bolas.get(i).getX()+bolas.get(i).getRadius() > bolas.get(j).getX()-bolas.get(j).getRadius() &&
+                        bolas.get(i).getX()-bolas.get(i).getRadius() < bolas.get(j).getX()+bolas.get(j).getRadius() ||
+                        bolas.get(i).getY()+bolas.get(i).getRadius() > bolas.get(j).getY()-bolas.get(j).getRadius() &&
+                        bolas.get(i).getY()-bolas.get(i).getRadius() < bolas.get(j).getY()+bolas.get(j).getRadius()){
                     this.idxBump1 = i;
                     this.idxBump2 = j;
                     res = true;

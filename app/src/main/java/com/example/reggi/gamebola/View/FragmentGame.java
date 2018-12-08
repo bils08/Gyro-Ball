@@ -169,14 +169,14 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     public void drawObstacle() {
         for (int i = 0; i < this.obstacles.size(); i++) {
             for (int j = 0; j < i; j++) {
-                while (obstacles.get(i).getX() >= obstacles.get(j).getX() - obstacles.get(j).getSisi() &&
-                        obstacles.get(i).getX() <= obstacles.get(j).getX() + obstacles.get(j).getSisi() ||
-                        obstacles.get(i).getY() >= obstacles.get(j).getY() - obstacles.get(j).getSisi() &&
-                        obstacles.get(i).getY() <= obstacles.get(j).getY() + obstacles.get(j).getSisi() ||
-                        obstacles.get(i).getX() >= bolaStatic.getX()-bolaStatic.getRadius() &&
-                        obstacles.get(i).getX() <= bolaStatic.getX()+bolaStatic.getRadius() ||
-                        obstacles.get(i).getY() <= bolaStatic.getY()-bolaStatic.getRadius() &&
-                        obstacles.get(i).getY() >= bolaStatic.getY()+bolaStatic.getRadius()) {
+                while (obstacles.get(i).getX() >= obstacles.get(j).getX() - obstacles.get(j).getSisi() &&   //--
+                        obstacles.get(i).getX() <= obstacles.get(j).getX() + obstacles.get(j).getSisi() ||  //-- cek intersect
+                        obstacles.get(i).getY() >= obstacles.get(j).getY() - obstacles.get(j).getSisi() &&  //-- antar obstacle
+                        obstacles.get(i).getY() <= obstacles.get(j).getY() + obstacles.get(j).getSisi() ||  //--
+                        obstacles.get(i).getX() >= bolaStatic.getX()-bolaStatic.getRadius() &&  //--
+                        obstacles.get(i).getX() <= bolaStatic.getX()+bolaStatic.getRadius() ||  //-- cek intersect
+                        obstacles.get(i).getY() <= bolaStatic.getY()-bolaStatic.getRadius() &&  //-- dengan bola static(lobang)
+                        obstacles.get(i).getY() >= bolaStatic.getY()+bolaStatic.getRadius()) {  //--
                     obstacles.get(i).randomPosition(width, height);
                 }
             }
