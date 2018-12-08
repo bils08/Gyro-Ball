@@ -7,16 +7,17 @@ import com.example.reggi.gamebola.Presenter;
 public class Timer {
     protected String printTime;
     protected Game game;
+    protected long timeInMillis;
+    protected CountDownTimer timer;
 
-    public Timer(Game game){
+    public Timer(Game game) {
         this.game = game;
+        this.timeInMillis = 0;
     }
 
-    protected long timeInMillis = 0;
-    CountDownTimer timer;
-    public void startTimer(){
+    public void startTimer() {
         timeInMillis = 11000; //waktu kita set menjadi 10 detik per game
-        timer = new CountDownTimer(timeInMillis,1000) {
+        timer = new CountDownTimer(timeInMillis, 1000) {
             @Override
             public void onTick(long s) {
                 timeInMillis = s;
@@ -30,18 +31,18 @@ public class Timer {
         }.start();
     }
 
-    public void updateTime(){
-        int seconds = (int) (timeInMillis/1000) % 60;
+    public void updateTime() {
+        int seconds = (int) (timeInMillis / 1000) % 60;
         this.printTime = "Time : " + seconds;
         this.game.updateTimeToPresenter(this.printTime);
     }
 
-    public void stopTimer(){
+    public void stopTimer() {
         timer.cancel();
     }
 
 
-    public void timerFinish(){
+    public void timerFinish() {
         this.game.timerEnd(true);
     }
 }

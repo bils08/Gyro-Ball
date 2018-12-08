@@ -32,25 +32,9 @@ public class Bola {
         return x;
     }
 
-    public float getStaticX(){
-        return this.bolaStatic.getX();
-    }
-
     public float getY(){
         return y;
     }
-
-    public float getStaticY(){
-        return this.bolaStatic.getY();
-    }
-
-    /*public int getObstacleX(){
-        return this.obstacle.getX();
-    }
-
-    public int getObstacleY(){
-        return this.obstacle.getY();
-    }*/
 
     public int getRadius(){
         return radius;

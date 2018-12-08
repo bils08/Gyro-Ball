@@ -14,7 +14,7 @@ public class SensorReader implements SensorEventListener {
     protected ArrayList<Bola> bola;
     protected SensorManager manager;
     protected Sensor accelerometer;
-    boolean startGame;
+    protected boolean startGame;
 
     public SensorReader(MainActivity mainActivity, ArrayList<Bola> bola){
         this.bola = bola;
