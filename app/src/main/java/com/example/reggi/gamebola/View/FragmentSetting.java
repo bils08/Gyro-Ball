@@ -81,7 +81,7 @@ public class FragmentSetting extends Fragment implements View.OnClickListener {
                 e.printStackTrace();
             }
             if (this.difficulty.getText().length() == 0) {
-                this.listener.setDifficulty(1);
+                this.listener.setDifficulty(0);
             } else {
                 this.listener.setDifficulty(Integer.parseInt(this.difficulty.getText().toString()));
             }
@@ -92,6 +92,8 @@ public class FragmentSetting extends Fragment implements View.OnClickListener {
                 int input = Integer.parseInt(this.jmlBola.getText().toString());
                 this.listener.setJumlahBola(input);
             }
+            MainActivity ma = (MainActivity)getActivity();
+            ma.changeToGame();
         }
     }
 

@@ -60,6 +60,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     protected ArrayList<Bola> movingBall;
     protected ArrayList<Obstacle> obstacles;
     protected BolaStatic bolaStatic;
+    protected boolean start;
 
     public FragmentGame() {
     }
@@ -83,6 +84,7 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
         this.exitGame = result.findViewById(R.id.exitGame);
         this.nightMode = result.findViewById(R.id.nightMode);
 
+        this.start = false;
         this.paint = new Paint();
         this.r = new Random();
         this.path = new Path();
@@ -111,11 +113,15 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
     @Override
     public void onClick(View v) {
         if (v == newGame) {
-            this.newGame.setTextColor(Color.BLACK);
-            this.initiateCanvas();
-            this.p.getPosition(width, height);
-            this.listenerFragmentGame.startGameTrue();
-            this.startTime();
+            if (!this.start) {
+                this.newGame.setTextColor(Color.BLACK);
+                this.initiateCanvas();
+                this.p.getPosition(width, height);
+                this.listenerFragmentGame.startGameTrue();
+                this.startTime();
+                this.start = true;
+                this.newGame.setEnabled(false);
+            }
         } else if (v == exitGame) {
             System.exit(1);
         }
@@ -154,6 +160,10 @@ public class FragmentGame extends Fragment implements View.OnClickListener, Swit
             Toast toast = Toast.makeText(getActivity(), "Time is up! Your last score is : " + String.valueOf(this.score), Toast.LENGTH_SHORT);
             this.resetGame();
             toast.show();
+            this.start = false;
+            this.newGame.setEnabled(true);
+            MainActivity ma = (MainActivity)getActivity();
+            ma.changeToHighScore();
         }
     }
 
